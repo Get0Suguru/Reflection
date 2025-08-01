@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: mongoDb
+  data:
+    mongodb:
+      database: journaldb
+      auto-index-creation: true
+      uri: mongodb+srv://gautam45taneja:MnWeHdOgaUlXvOxk@cluster0.swf8sn9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+
