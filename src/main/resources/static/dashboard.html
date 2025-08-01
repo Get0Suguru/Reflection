@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Reflection</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-feather-alt"></i>
+                <span>Reflection</span>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-new-entry" onclick="showNewEntryModal()">
+                    <i class="fas fa-plus"></i>
+                    New Entry
+                </button>
+                <div class="user-menu">
+                    <button class="user-button" onclick="toggleUserMenu()">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="username-display"></span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" onclick="showProfile()">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                        <a href="#" onclick="showSettings()">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Quick Actions</h3>
+                <button class="sidebar-btn active" onclick="showAllEntries()">
+                    <i class="fas fa-book-open"></i>
+                    All Entries
+                </button>
+                <button class="sidebar-btn" onclick="showRecentEntries()">
+                    <i class="fas fa-clock"></i>
+                    Recent
+                </button>
+                <button class="sidebar-btn" onclick="showFavorites()">
+                    <i class="fas fa-heart"></i>
+                    Favorites
+                </button>
+            </div>
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <div class="category-list">
+                    <div class="category-item">
+                        <span class="category-color" style="background: #ef4444;"></span>
+                        Personal
+                    </div>
+                    <div class="category-item">
+                        <span class="category-color" style="background: #3b82f6;"></span>
+                        Work
+                    </div>
+                    <div class="category-item">
+                        <span class="category-color" style="background: #10b981;"></span>
+                        Travel
+                    </div>
+                    <div class="category-item">
+                        <span class="category-color" style="background: #f59e0b;"></span>
+                        Ideas
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <h3>Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalEntries">0</div>
+                        <div class="stat-label">Total Entries</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="thisMonth">0</div>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="streak">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Your Journal Entries</h1>
+                    <p>Capture your thoughts and memories</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search your entries..." id="searchInput">
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" onclick="setView('grid')">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" onclick="setView('list')">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Entries Grid -->
+            <div class="entries-container">
+                <div id="entriesGrid" class="entries-grid">
+                    <!-- Entries will be loaded here -->
+                </div>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>No entries yet</h3>
+                    <p>Start your journaling journey by creating your first entry</p>
+                    <button class="btn-primary" onclick="showNewEntryModal()">
+                        <i class="fas fa-plus"></i>
+                        Create First Entry
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- New Entry Modal -->
+    <div id="entryModal" class="modal">
+        <div class="modal-content entry-modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">New Journal Entry</h2>
+                <span class="close" onclick="closeEntryModal()">&times;</span>
+            </div>
+            <form id="entryForm" class="entry-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entryTitle">Title</label>
+                        <input type="text" id="entryTitle" required placeholder="Give your entry a title...">
+                    </div>
+                    <div class="form-group">
+                        <label for="entryDate">Date</label>
+                        <input type="date" id="entryDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="entryContent">Content</label>
+                    <textarea id="entryContent" required placeholder="What's on your mind today?" rows="12"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEntryModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Entry
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Entry Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content view-modal">
+            <div class="modal-header">
+                <h2 id="viewTitle"></h2>
+                <div class="modal-actions">
+                    <button class="btn-icon" onclick="editEntry()" id="editBtn">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon" onclick="deleteEntry()" id="deleteBtn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <span class="close" onclick="closeViewModal()">&times;</span>
+                </div>
+            </div>
+            <div class="view-content">
+                <div class="entry-meta">
+                    <span class="entry-date" id="viewDate"></span>
+                </div>
+                <div class="entry-text" id="viewContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

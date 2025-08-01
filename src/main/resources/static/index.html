@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflection - Live Through Your Memories Again</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-feather-alt"></i>
+                <span>Reflection</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <div class="nav-auth">
+                    <button class="btn-secondary" onclick="showLogin()">Sign In</button>
+                    <button class="btn-primary" onclick="showRegister()">Get Started</button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Capture</span> Your Thoughts,<br>
+                    <span class="gradient-text">Relive</span> Your Memories
+                </h1>
+                <p class="hero-subtitle">
+                    A beautiful, secure space to document your journey, reflect on your experiences, 
+                    and rediscover the moments that shaped you.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-hero-primary" onclick="showRegister()">
+                        <i class="fas fa-pen-fancy"></i>
+                        Start Your Journey
+                    </button>
+                    <button class="btn-hero-secondary" onclick="scrollToFeatures()">
+                        <i class="fas fa-play"></i>
+                        Learn More
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Memories Captured</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Active Writers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="journal-mockup">
+                    <div class="journal-cover">
+                        <div class="journal-spine"></div>
+                        <div class="journal-pages">
+                            <div class="page active">
+                                <div class="page-header">
+                                    <div class="page-date">Today</div>
+                                    <div class="page-weather">☀️</div>
+                                </div>
+                                <div class="page-content">
+                                    <h3>A Beautiful Morning</h3>
+                                    <p>The sunrise painted the sky in shades of gold and pink...</p>
+                                </div>
+                            </div>
+                            <div class="page">
+                                <div class="page-content">
+                                    <h3>Reflections on Growth</h3>
+                                    <p>Looking back, I realize how much I've changed...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Reflection?</h2>
+                <p>Designed with your privacy, creativity, and growth in mind</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your thoughts are encrypted and protected. Only you have access to your personal reflections.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Beautiful Interface</h3>
+                    <p>A clean, distraction-free writing environment that inspires creativity and focus.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Smart Search</h3>
+                    <p>Find any memory instantly with powerful search capabilities across all your entries.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Sync</h3>
+                    <p>Access your journals from anywhere, anytime. Your memories are always with you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Growth Tracking</h3>
+                    <p>Visualize your writing habits and personal growth over time with insightful analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Ready</h3>
+                    <p>Write on the go with our responsive design that works perfectly on all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Your Digital Sanctuary</h2>
+                    <p>Reflection is more than just a journaling app—it's your personal space for growth, creativity, and self-discovery. Whether you're documenting daily experiences, working through challenges, or capturing moments of inspiration, we provide the tools and environment you need.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited journal entries</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Rich text formatting</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Export your data anytime</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>24/7 customer support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Reflection has transformed how I process my thoughts and emotions. It's become an essential part of my daily routine."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Johnson</div>
+                                <div class="author-title">Writer & Therapist</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-feather-alt"></i>
+                        <span>Reflection</span>
+                    </div>
+                    <p>Live through your memories again</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#security">Security</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#careers">Careers</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#help">Help Center</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Reflection. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modals -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="loginForm" class="auth-form">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue your journey</p>
+                <form>
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn-form">Sign In</button>
+                </form>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="switchToRegister()">Sign up</a></p>
+            </div>
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Start Your Journey</h2>
+                <p>Create your account to begin reflecting</p>
+                <form>
+                    <div class="form-group">
+                        <label for="registerUsername">Username</label>
+                        <input type="text" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn-form">Create Account</button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="switchToLogin()">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

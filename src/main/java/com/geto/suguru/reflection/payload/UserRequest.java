@@ -16,6 +16,6 @@ public class UserRequest {
     @NonNull
     private String password;
 
-    @NonNull
+
     private List<ERole> role;
 }
