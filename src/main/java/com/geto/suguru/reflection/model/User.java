@@ -18,6 +18,7 @@ public class User {
     @Id
     private ObjectId id;
 
+
     @NonNull
     @Indexed(unique = true)    // we keep the username unique coz we delete with that too
     private String username;

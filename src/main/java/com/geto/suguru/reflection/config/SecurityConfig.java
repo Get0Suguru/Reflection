@@ -32,10 +32,17 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(withDefaults())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/api/public/**").permitAll()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**",
+                                "/webjars/**",
+                                "/api/public/**"
+                        ).permitAll()
                         .requestMatchers("/api/journals/**", "/api/users/**").authenticated()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll())
+                        .anyRequest().authenticated())
                 .httpBasic(withDefaults());
         return http.build();
     }

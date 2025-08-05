@@ -22,14 +22,27 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public User findByUsername(String username){
+        return userRepo.findByUsername(username);
+    }
 
 
-    public void createNewUser(UserRequest userInfo) {
-        User user = new User();
-        user.setUsername(userInfo.getUsername());
-        user.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        user.setRole(userInfo.getRole());
-        userRepo.save(user);
+    public boolean createNewUser(UserRequest userInfo) {
+
+        try{
+            User user = new User();
+            user.setUsername(userInfo.getUsername());
+            user.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+            if(userInfo.getRole() == null || userInfo.getRole().isEmpty()){
+                user.setRole(List.of(ERole.ROLE_USER));
+            }else {
+                user.setRole(userInfo.getRole());
+            }
+            userRepo.save(user);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 
     public void updateUserInfo(UserRequest newInfo) {
