@@ -1,6 +1,6 @@
 package com.geto.suguru.reflection.config;
 
-import com.geto.suguru.reflection.service.customUserDetailsService;
+import com.geto.suguru.reflection.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     @Autowired
-    private customUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
 
     @Bean
