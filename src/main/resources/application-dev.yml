@@ -8,4 +8,7 @@ spring:
       uri: mongodb+srv://gautam45taneja:MnWeHdOgaUlXvOxk@cluster0.swf8sn9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 
+server:
+  port: 8080
+
 
