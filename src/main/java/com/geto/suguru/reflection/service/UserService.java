@@ -5,6 +5,10 @@ import com.geto.suguru.reflection.model.User;
 import com.geto.suguru.reflection.payload.UserRequest;
 import com.geto.suguru.reflection.payload.UserResponse;
 import com.geto.suguru.reflection.repo.UserRepo;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j              // lombok's annotation
 @Service
 public class UserService {
 
@@ -21,6 +26,8 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+//    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public User findByUsername(String username){
         return userRepo.findByUsername(username);
@@ -40,6 +47,11 @@ public class UserService {
             }
             userRepo.save(user);
         }catch (Exception e){
+            log.error("Failed to create user: failed to save user {}", userInfo.getUsername(), e );
+            log.warn("hahahahahah");
+            log.info("hahahahhahahah");
+            log.debug("hahahahahahah");
+            log.trace("hahahahahahaha");
             return false;
         }
         return true;

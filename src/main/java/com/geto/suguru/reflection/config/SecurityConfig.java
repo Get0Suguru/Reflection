@@ -42,7 +42,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/api/journals/**", "/api/users/**").authenticated()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .httpBasic(withDefaults());
         return http.build();
     }

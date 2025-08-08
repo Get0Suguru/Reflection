@@ -43,12 +43,6 @@ public class PublicController {
             if (userinfo.getPassword() == null || userinfo.getPassword().trim().isEmpty()) {
                 return new ResponseEntity<>("Password is required", HttpStatus.BAD_REQUEST);
             }
-            
-            // Check if user already exists
-            if (userRepo.findByUsername(userinfo.getUsername()) != null) {
-                return new ResponseEntity<>("Username already exists", HttpStatus.CONFLICT);
-            }
-            
             userService.createNewUser(userinfo);
             return new ResponseEntity<>("User Created Successfully", HttpStatus.CREATED);
         } catch (Exception e) {
