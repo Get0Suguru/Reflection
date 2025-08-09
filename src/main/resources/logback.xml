@@ -10,6 +10,13 @@
     </appender>
 
     <appender name="fileLogAppender" class="ch.qos.logback.core.FileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy">
+            <fileNamePattern>logs/journalAppLogs-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+
         <encoder>
             <pattern>
                 %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
