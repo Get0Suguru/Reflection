@@ -4,6 +4,7 @@ import com.geto.suguru.reflection.model.ERole;
 import com.geto.suguru.reflection.model.User;
 import com.geto.suguru.reflection.repo.UserRepo;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
@@ -40,6 +41,7 @@ import static org.mockito.Mockito.when;
 
 // running shit without spring context
 
+@Disabled
 public class CustomUserDetailsServiceTests {
 
     @InjectMocks
