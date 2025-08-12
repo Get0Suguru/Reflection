@@ -2,7 +2,9 @@ package com.geto.suguru.reflection.controller;
 
 import com.geto.suguru.reflection.payload.UserRequest;
 import com.geto.suguru.reflection.payload.UserResponse;
+import com.geto.suguru.reflection.payload.WeatherResponse;
 import com.geto.suguru.reflection.service.UserService;
+import com.geto.suguru.reflection.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private WeatherService weatherService;
 
 
 
@@ -41,7 +46,9 @@ public class UsersController {
 
     @GetMapping("/greetings")
     public ResponseEntity<String> greetUser(){
-        return new ResponseEntity<>("Hello " + SecurityContextHolder.getContext().getAuthentication().getName() , HttpStatus.OK);
+        WeatherResponse res = weatherService.getWeather("Hansi");
+        return new ResponseEntity<>("Hello " + SecurityContextHolder.getContext().getAuthentication().getName() +
+                " feels like " + res.getCurrent().getFeelslike() + " in hansi" , HttpStatus.OK);
     }
 
 
