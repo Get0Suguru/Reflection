@@ -51,25 +51,26 @@ public class PublicController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> loginUser(@RequestBody UserRequest loginInfo) {
+    public ResponseEntity<String> loginUser(@RequestBody UserRequest loginInfo) {
         try {
             if (loginInfo.getUsername() == null || loginInfo.getUsername().trim().isEmpty()) {
-                return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("enter username first", HttpStatus.BAD_REQUEST);
             }
             if (loginInfo.getPassword() == null || loginInfo.getPassword().trim().isEmpty()) {
-                return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("password can't be null", HttpStatus.BAD_REQUEST);
             }
-
             User user = userRepo.findByUsername(loginInfo.getUsername());
             if (user == null) {
-                return new ResponseEntity<>(false, HttpStatus.OK);
+                return new ResponseEntity<>("user not found", HttpStatus.NOT_FOUND);
             }
-
             boolean passwordMatches = passwordEncoder.matches(loginInfo.getPassword(), user.getPassword());
-            return new ResponseEntity<>(passwordMatches, HttpStatus.OK);
+            if (!passwordMatches) {
+                return new ResponseEntity<>("wrong password", HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>("login successful welcome " + user.getUsername(), HttpStatus.OK);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
