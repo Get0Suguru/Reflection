@@ -19,17 +19,30 @@ public class WeatherService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private RedisService redisService;
 
-    public WeatherResponse getWeather(String city){
-        String actuallApi = apiUrl.replace("CITY", city).replace("ACCESS_KEY", apiKey);
-        ResponseEntity<WeatherResponse> hei = restTemplate.exchange(actuallApi, HttpMethod.GET, null, WeatherResponse.class);
-                        // deserialize to weather class  (deserialize means converting json/anything -> pojo (java Object))
-        HttpStatusCode statusCode = hei.getStatusCode();
-        if(statusCode.is2xxSuccessful()){
-            return hei.getBody();
-        }else {
-            throw new RuntimeException("Failed to fetch weather data");
+
+    public WeatherResponse getWeather(String city) {
+
+        WeatherResponse weatherResponse = redisService.get("weather_of " + city, WeatherResponse.class);
+        if (weatherResponse != null) {
+            return weatherResponse;
+        } else {
+
+            String actuallApi = apiUrl.replace("CITY", city).replace("ACCESS_KEY", apiKey);
+            ResponseEntity<WeatherResponse> hei = restTemplate.exchange(actuallApi, HttpMethod.GET, null, WeatherResponse.class);
+            // deserialize to weather class  (deserialize means converting json/anything -> pojo (java Object))
+            HttpStatusCode statusCode = hei.getStatusCode();
+            if (statusCode.is2xxSuccessful()) {
+                redisService.set("weather_of " + city, hei.getBody(), 600L);  // 10 minutes
+                return hei.getBody();
+            } else {
+                throw new RuntimeException("Failed to fetch weather data");
+            }
+
         }
+
 
     }
 
